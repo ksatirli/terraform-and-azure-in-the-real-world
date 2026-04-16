@@ -28,7 +28,7 @@ Adding attendees requires applying this workspace before their HCP Terraform run
 
 **`project_identifier` validation**
 must be lowercase alphanumeric with hyphens. No spaces, no uppercase.
-Used in resource names across Azure, GitHub, and HCP Terraform.
+Used in resource names across Azure and HCP Terraform.
 
 ## Contributors
 
