@@ -1,16 +1,12 @@
-# HCP Terraform Workshop Management
+# Terraform and Azure in The Real World
 
-> Admin workspace that provisions complete workshop environments: per-attendee HCP Terraform workspaces, GitHub repos, Azure OIDC identity, and Sentinel governance policies.
+> Dynamic Provider Credentials, Ephemeral Resources, Terraform Actions, and Terraform Search
 
 ## Table of Contents
 
 <!-- TOC -->
 * [Table of Contents](#table-of-contents)
 * [Requirements](#requirements)
-* [Usage](#usage)
-* [Inputs](#inputs)
-* [Outputs](#outputs)
-* [Architecture](#architecture)
 * [Notes](#notes)
 * [Contributors](#contributors)
 * [License](#license)
@@ -20,49 +16,9 @@
 
 * HashiCorp Cloud Platform (HCP) [Account](https://portal.cloud.hashicorp.com/sign-in)
 * HashiCorp HCP Terraform [Account](https://app.terraform.io/session)
-* HashiCorp Terraform `1.x` or [newer](https://developer.hashicorp.com/terraform/downloads)
+* HashiCorp Terraform `1.14.x` or [newer](https://developer.hashicorp.com/terraform/downloads)
 * Azure AD [Account](https://portal.azure.com/)
 * Azure [Account](https://portal.azure.com/)
-* GitHub Organization with [admin access](https://github.com/settings/organizations)
-
-### Development
-
-* `terraform-docs` `0.21.0` or [newer](https://terraform-docs.io/user-guide/installation/)
-* `tflint` `0.61.0` or [newer](https://github.com/terraform-linters/tflint)
-* [Task](https://taskfile.dev/) `3.x` or newer
-
-## Usage
-
-This workspace provisions isolated workshop environments for each attendee. It creates GitHub repos from a template, HCP Terraform workspaces with VCS integration, and Azure OIDC authentication — all driven by `attendee_count` and `attendee_github_usernames`.
-
-This repository provides a [Taskfile](./Taskfile.yml)-based workflow. Run `task --list` to see available commands.
-
-<!-- BEGIN_TF_DOCS -->
-### Inputs
-
-| Name | Description | Type | Required |
-|------|-------------|------|:--------:|
-| azure_subscription_id | Azure Subscription ID for workshop resources | `string` | yes |
-| azure_tenant_id | Azure Tenant ID for workshop resources | `string` | yes |
-| github_organization | GitHub organization for workshop repos | `string` | yes |
-| github_template_repo_name | Name of the template repository | `string` | yes |
-| github_token | GitHub personal access token for HCP Terraform VCS integration | `string` | yes |
-| tfe_organization_name | HCP Terraform organization name | `string` | yes |
-| workshop_attendees_github | List of GitHub usernames for workshop attendees | `list(string)` | yes |
-| github_template_repo_branch | Default branch of the template repository | `string` | no |
-| project_identifier | Name prefix for the workshop project (lowercase, no spaces, alphanumeric and hyphens only) | `string` | no |
-
-### Outputs
-
-| Name | Description |
-|------|-------------|
-| attendee_repos | Map of attendee keys to GitHub repository URLs |
-| azure_app_client_id | Azure AD Application Client ID used for OIDC |
-| github_team_slug | GitHub team slug for workshop attendees |
-| service_principal_object_id | Azure AD Service Principal Object ID |
-| workspace_names | Map of attendee keys to HCP Terraform workspace names |
-| workspace_urls | Map of attendee keys to HCP Terraform workspace URLs |
-<!-- END_TF_DOCS -->
 
 ## Notes
 
