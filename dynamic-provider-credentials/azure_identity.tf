@@ -24,20 +24,15 @@ resource "azuread_service_principal" "main" {
 
 # see https://registry.terraform.io/providers/hashicorp/azuread/3.8.0/docs/resources/application_federated_identity_credential
 resource "azuread_application_federated_identity_credential" "main" {
-  for_each = {
-    for cred in local.azure_federated_credentials :
-    "${cred.attendee}-${cred.phase}" => cred
-  }
-
   application_id = azuread_application.main.id
 
   audiences = [
     "api://AzureADTokenExchange"
   ]
 
-  display_name = "hcp-terraform-${var.project_identifier}-${each.value.attendee}-${each.value.phase}"
+  display_name = "hcp-terraform-${var.project_identifier}-seattlehug"
   issuer       = "https://app.terraform.io"
-  subject      = "organization:${var.tfe_organization_name}:project:${tfe_project.main.name}:workspace:${each.value.workspace}:run_phase:${each.value.phase}"
+  subject      = "organization:${var.tfe_organization_name}:project:${tfe_project.main.name}:workspace:seattlehug:run_phase:${each.value.phase}"
 }
 
 # see https://registry.terraform.io/providers/hashicorp/azurerm/4.69.0/docs/resources/role_assignment

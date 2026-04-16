@@ -10,7 +10,7 @@ data "azurerm_key_vault_secret" "main" {
   name         = var.azurerm_key_vault_secret_name
 }
 
-# # see https://registry.terraform.io/providers/hashicorp/azurerm/4.69.0/docs/ephemeral-resources/key_vault_secret
+# see https://registry.terraform.io/providers/hashicorp/azurerm/4.69.0/docs/ephemeral-resources/key_vault_secret
 # ephemeral "azurerm_key_vault_secret" "main" {
 #   key_vault_id = data.azurerm_key_vault.main.id
 #   name         = var.azurerm_key_vault_secret_name_ephemeral
